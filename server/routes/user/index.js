@@ -1,6 +1,5 @@
 import express from 'express';
 var router = express.Router();
-import User from "../../models/userSchema";
 import controller from "./controller";
 /* GET users listing. */
 router.get('/', controller.getAllUser);

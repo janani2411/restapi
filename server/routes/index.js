@@ -1,9 +1,10 @@
-import express from 'express';
-var router = express.Router();
+import express from "express";
+import IndexRouter from "./users.js";
+import UserRouter from "./user";
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const routes = (app) => {
+  app.use("/", IndexRouter);
+  app.use("/users", UserRouter);
+};
 
-export default router;
+export default routes;
