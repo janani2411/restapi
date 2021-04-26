@@ -1,15 +1,16 @@
 "use strict";
 
-var _express = _interopRequireDefault(require("express"));
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
 
-var _userSchema = _interopRequireDefault(require("../models/userSchema"));
+var _userSchema = _interopRequireDefault(require("../../models/userSchema"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var router = _express["default"].Router();
-
-/* GET users listing. */
-router.get('/', function (req, res, next) {
+// GET ALL THE USER
+var getAllUser = function getAllUser(req, res, next) {
   _userSchema["default"].find().then(function (result) {
     res.status(200).json({
       userdetails: result
@@ -19,9 +20,10 @@ router.get('/', function (req, res, next) {
       error: error
     });
   });
-}); //Create new user
+}; // CREATE SPECIFIC USER
 
-router.post('/', function (req, res, next) {
+
+var createUser = function createUser(req, res, next) {
   var user = new _userSchema["default"]({
     id: req.body.id,
     firstname: req.body.firstname,
@@ -36,9 +38,10 @@ router.post('/', function (req, res, next) {
   } catch (error) {
     res.send(error);
   }
-}); //Get single user by id
+}; // GET SPECIFIC USER
 
-router.get('/:id', function (req, res, next) {
+
+var getUser = function getUser(req, res, next) {
   _userSchema["default"].findOne({
     id: req.params.id
   }).then(function (result) {
@@ -50,9 +53,10 @@ router.get('/:id', function (req, res, next) {
       error: error
     });
   });
-}); //Update User details using PATCH method
+}; // UPDATE SPECIFIC USER
 
-router.patch('/:id', function (req, res, next) {
+
+var updateUser = function updateUser(req, res, next) {
   _userSchema["default"].findOneAndUpdate({
     id: req.params.id
   }, {
@@ -69,9 +73,10 @@ router.patch('/:id', function (req, res, next) {
       error: error
     });
   });
-}); //Delete user by using DELETE method
+}; // DELETE SPECIFIC USER
 
-router["delete"]('/:id', function (req, res, next) {
+
+var deleteUser = function deleteUser(req, res, next) {
   _userSchema["default"].findOneAndDelete({
     id: req.params.id
   }).then(function (result) {
@@ -83,5 +88,13 @@ router["delete"]('/:id', function (req, res, next) {
       error: error
     });
   });
-});
-module.exports = router;
+};
+
+var _default = {
+  getAllUser: getAllUser,
+  createUser: createUser,
+  getUser: getUser,
+  updateUser: updateUser,
+  deleteUser: deleteUser
+};
+exports["default"] = _default;

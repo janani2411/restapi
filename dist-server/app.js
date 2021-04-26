@@ -17,7 +17,7 @@ var _morgan = _interopRequireDefault(require("morgan"));
 
 var _index = _interopRequireDefault(require("./routes/index"));
 
-var _users = _interopRequireDefault(require("./routes/users"));
+var _index2 = _interopRequireDefault(require("./routes/user/index"));
 
 var _dotenv = _interopRequireDefault(require("dotenv"));
 
@@ -42,6 +42,6 @@ app.use(_express["default"].urlencoded({
 app.use((0, _cookieParser["default"])());
 app.use(_express["default"]["static"](_path["default"].join(__dirname, '../public')));
 app.use('/', _index["default"]);
-app.use('/users', _users["default"]);
+app.use('/users', _index2["default"]);
 var _default = app;
 exports["default"] = _default;
